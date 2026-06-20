@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Builders | Back-Office Operations for Small Business</title>
+<meta name="description" content="System Builders handles the operational side of your business so you can focus on the work that actually makes you money. Serving Oklahoma City metro area businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --paper: #f5f2ec;
+    --accent: #b8860b;
+    --accent-light: #d4a843;
+    --muted: #8a8578;
+    --divider: #d6d0c4;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 242, 236, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .nav-brand {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.35rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--ink);
+    padding: 0.65rem 1.5rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+
+  .nav-cta:hover { background: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    max-width: 820px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--ink);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-cta:hover { background: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .divider-line {
+    border: none;
+    border-top: 1px solid var(--divider);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-heading {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+
+  .section-body {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 2rem;
+  }
+
+  /* PROBLEM */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .problem-card {
+    background: var(--white);
+    padding: 2rem;
+    border: 1px solid var(--divider);
+  }
+
+  .problem-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .problem-card p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* WHAT WE DO */
+  .services-list {
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 0;
+  }
+
+  .service-item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--divider);
+    align-items: start;
+  }
+
+  .service-item:first-child { border-top: 1px solid var(--divider); }
+
+  .service-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    line-height: 1.3;
+  }
+
+  .service-item h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .service-item p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* WHO WE ARE */
+  .founders {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .founder h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .founder-role {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .founder p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--ink);
+    padding: 6rem 2rem;
+    max-width: none;
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-section .section-label { color: var(--accent-light); }
+
+  .cta-section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--paper);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-section p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cta-phone {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    color: var(--accent-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .cta-phone:hover { color: var(--paper); }
+
+  .cta-email {
+    font-size: 1rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .cta-email:hover { color: var(--paper); }
+
+  .cta-divider {
+    width: 40px;
+    border: none;
+    border-top: 1px solid var(--muted);
+    margin: 0.5rem 0;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--divider);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-brand { font-size: 1.15rem; }
+    .nav-cta { padding: 0.55rem 1rem; font-size: 0.78rem; }
+    .hero { padding: 7rem 1.5rem 3rem; min-height: 90vh; }
+    section { padding: 4rem 1.5rem; }
+    .cta-section { padding: 4rem 1.5rem; }
+    .service-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+    .problem-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">System Builders</a>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">Back-Office Operations for Small Business</p>
+  <h1>You built a business to do what you're great at. Not to drown in the admin that keeps it running.</h1>
+  <p>System Builders handles payroll, billing, calendars, vendor coordination, and operational systems for small business owners in the Oklahoma City metro, so you can get back to the work that actually makes you money.</p>
+  <a href="#contact" class="hero-cta">Let's Talk</a>
+</div>
+
+<hr class="divider-line">
+
+<!-- THE PROBLEM -->
+<section>
+  <p class="section-label">The Problem</p>
+  <h2 class="section-heading">You know how to run a crew, close a deal, or serve a customer. But the back office is eating you alive.</h2>
+  <p class="section-body">You started your business because you're exceptional at something. Somewhere along the way, you became your own bookkeeper, scheduler, HR department, and IT support. That's not a business model. That's a bottleneck.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <h3>Bills get paid late</h3>
+      <p>Not because you can't afford them, but because nobody's watching the calendar. Late fees and strained vendor relationships add up quietly.</p>
+    </div>
+    <div class="problem-card">
+      <h3>Payroll is a scramble</h3>
+      <p>Every pay period feels like a fire drill. Hours get miscounted, deductions get missed, and your team starts to notice.</p>
+    </div>
+    <div class="problem-card">
+      <h3>Nothing is written down</h3>
+      <p>Your processes live in your head or scattered across sticky notes. When you're out, everything stalls. When you hire, onboarding takes weeks instead of days.</p>
+    </div>
+    <div class="problem-card">
+      <h3>You're working in the business, not on it</h3>
+      <p>The hours you spend on admin are hours you can't spend on revenue-generating work, strategic decisions, or the people who depend on you.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider-line">
+
+<!-- WHAT WE DO -->
+<section>
+  <p class="section-label">What We Do</p>
+  <h2 class="section-heading">We build the operational backbone your business is missing.</h2>
+  <p class="section-body">This isn't organizing your closet. We set up, manage, and maintain the systems that keep your business running when you're focused on everything else.</p>
+
+  <div class="services-list">
+    <div class="service-item">
+      <span class="service-num">01</span>
+      <div>
+        <h3>Accounts Payable &amp; Receivable</h3>
+        <p>Bills paid on time, invoices tracked, cash flow visible. No more guessing where the money went.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <span class="service-num">02</span>
+      <div>
+        <h3>Payroll Coordination</h3>
+        <p>Hours verified, payroll submitted, records maintained. Your people get paid right, every time.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <span class="service-num">03</span>
+      <div>
+        <h3>Calendar &amp; Scheduling Management</h3>
+        <p>Appointments, deadlines, renewals, and recurring obligations tracked and managed so nothing falls through the cracks.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <span class="service-num">04</span>
+      <div>
+        <h3>Vendor &amp; Supplier Coordination</h3>
+        <p>Orders placed, deliveries tracked, relationships maintained. We handle the back-and-forth so you don't have to.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <span class="service-num">05</span>
+      <div>
+        <h3>Standard Operating Procedures</h3>
+        <p>We document your processes into clear, repeatable systems. Your business runs the same way whether you're there or not.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <span class="service-num">06</span>
+      <div>
+        <h3>Digital File &amp; Document Management</h3>
+        <p>Contracts, licenses, permits, and records organized and accessible. No more digging through email to find what you need.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider-line">
+
+<!-- WHO WE ARE -->
+<section>
+  <p class="section-label">Who We Are</p>
+  <h2 class="section-heading">We've sat where you sit.</h2>
+  <p class="section-body">System Builders was founded by two people who've lived the operational pain firsthand; as business operators, managers, and parents building something that lasts.</p>
+
+  <div class="founders">
+    <div class="founder">
+      <h3>Alli</h3>
+      <p class="founder-role">Operations</p>
+      <p>Business administration degree. Years of hands-on experience managing operations, coordinating vendors, designing marketing materials, and building the back-office systems that small business owners need but never have time to create. She doesn't plan your vacations or fetch your coffee. She makes sure your business actually runs.</p>
+    </div>
+    <div class="founder">
+      <h3>Bryce</h3>
+      <p class="founder-role">Strategy &amp; Growth</p>
+      <p>Background in small business management, sales leadership, and systems design. Previously managed three businesses, 15 employees, and over $300K in annual sales revenue. He finds the clients, understands their pain, and makes sure the engagement delivers measurable value from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <p class="section-label">Get Started</p>
+    <h2>Your back office shouldn't be the thing that holds your business back.</h2>
+    <p>Tell us what's not working. We'll tell you honestly whether we can help.</p>
+    <div class="cta-contact">
+      <a href="tel:+14051234567" class="cta-phone">(405) 000-0000</a>
+      <hr class="cta-divider">
+      <a href="mailto:hello@systembuildersok.com" class="cta-email">hello@systembuildersok.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 System Builders LLC &middot; Oklahoma City Metro
+</footer>
+
+</body>
+</html>
